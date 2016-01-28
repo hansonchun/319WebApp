@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html ng-app="WebApp">
+	<head>
+		<link rel="stylesheet" type="text/css" href="libs/bootstrap.min.css" />
+		<link rel="stylesheet" type="text/css" href="libs/bootstrap-datetimepicker.min.css"
+	</head>
+
+	<body ng-controller="AppController as app">
+
+		<h1>
+			CS319 WebApp
+		</hi>
+
+		<br>
+
+		<div class="btn-group">
+			<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+				Select Watch <b class="caret"></b> 
+			</button>
+			<ul class="dropdown-menu" dropdown-menu>
+				<li ng-repeat="da in data">
+					<a href="#" ng-click="setWatch(da)">{{da.first_name}}</a>
+				</li>
+			</ul>
+		</div>
+
+		<div>
+			Selected Watch: {{currWatch.first_name}} 
+		</div>
+
+
+
+		<div>
+			<button class="btn btn-primary" type="button">Go!</button>
+		</div>
+
+
+
+		<script type="text/javascript" src="libs/jquery-2.2.0.min.js"></script> 
+		<script type="text/javascript" src="libs/bootstrap.min.js"></script>
+		<script type="text/javascript" src="libs/angular.min.js"></script>
+		<script type="text/javascript" src="app.js"></script>
+
+	</body>
+
+</html>
