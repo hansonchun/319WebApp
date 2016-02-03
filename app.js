@@ -1,26 +1,27 @@
 
-var app = angular.module('WebApp', []);
+var app = angular.module('WebApp', ["ngRoute", "ui.bootstrap"]);
 
-app.controller('AppController', function($scope, $http){
+app.config(function($routeProvider) {
+	$routeProvider
+		.when("/home", {
+			templateUrl:"app/home.html",
+			controller: "HomeController"
+		})
+		.when("/getWatchForm", {
+			templateUrl:"app/WatchForm/wfTemplate.html",
+			controller: "wfController"
+		})
+		.otherwise({
+			redirectTo:"/home"
+		});
+})
 
 
-	// Grab dummy data
-	$http.get('data/MOCK_DATA.json').
-	success(function(data, status, headers, config) {
-			$scope.data = data
-			console.log($scope.data);
-		}).
-	error(function(data, status, headers, config){
-		console.log(status)
-	});
 
 
-	$scope.setWatch = function(watch) {
-		console.log("Selected watch:", watch.first_name)
-		$scope.currWatch = watch
+app.controller("HomeController", function($scope, $location) {
+
+	$scope.getWatchData = function() {
+		$location.path("/getWatchForm");
 	}
-		
-});
-
-
-
+})

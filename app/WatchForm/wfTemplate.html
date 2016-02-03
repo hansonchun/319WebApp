@@ -1,0 +1,53 @@
+<form class="form-horizontal" name="watchForm" novalidate role="form">
+
+	<br>
+	<fieldset>
+
+		<legend>Let's Get Some Watch Data</legend>
+		<div class="form-group">
+			<label for="watchID" class="control-label">Watch ID:</label> {{selectedWatch.id}}
+			<div class="controls">
+				<select class="form-control" id="watchID" ng-model="selectedWatch.id">
+					<option ng-repeat="d in data" value="{{d.first_name}}">{{d.first_name}}</option>
+				</select>
+			</div>
+		</div>
+
+		<br>
+
+		<div class="form-group" style="display:inline-block"; min-height:290px>
+			<label for="watchDate" class="control-label">Date: </label>{{selectedWatch.date | date:'fullDate'}}
+			<div class="controls">
+				<uib-datepicker ng-model="selectedWatch.date" format="longDate" show-weeks="false"></uib-datepicker>
+			</div>
+		</div>
+
+		<br>
+		<br>
+
+		<div class="form-group">
+			<label for="watchTime" class="control-label">Time:</label> {{selectedWatch.fromTime | date:'shortTime'}} - {{selectedWatch.toTime | date:'shortTime'}}
+			<div class="row">
+				<div class="col-xs-2">From</div>
+				<div class="col-xs-3">
+					<uib-timepicker ng-model="selectedWatch.fromTime"></uib-timepicker>
+				</div>
+				<div class="col-xs-2">to</div>
+				<div class="col-xs-3">
+					<uib-timepicker ng-model="selectedWatch.toTime"></uib-timepicker>
+				</div>
+			</div>
+		</div>
+
+		<br>	
+
+	</fieldset>
+
+	<div class="col-sm-6">
+		<input type="submit" class="btn btn-primary" value="Submit" ng-click="submitForm()"/>
+	</div>
+
+	<br>
+	<br>
+
+</form>
