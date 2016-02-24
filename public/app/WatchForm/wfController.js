@@ -1,4 +1,4 @@
-app.controller('wfController', function wfController($scope, $http) {
+app.controller('wfController', function wfController($scope, $http, DataService) {
 
 
 		$scope.selectedWatch = {
@@ -10,21 +10,15 @@ app.controller('wfController', function wfController($scope, $http) {
 		
 
 		// JSON get
-		$http.get('data/MOCK_DATA.json').
-		success(function(data, status, headers, config) {
-						$scope.data = data
-						console.log($scope.data);
-				}).
-		error(function(data, status, headers, config){
-				console.log(status)
-		});
+		DataService.getWatchIDs().then(function(data) {
+			$scope.data = data;
+			console.log($scope.data);
+		});	
 
 		// Form submission
 		$scope.submitForm = function() {
 
 			console.log($scope.selectedWatch.id);
-			console.log($scope.selectedWatch.date);
-			console.log($scope.selectedWatch.fromTime);
 
 			// Split up date and time
 			var from = $scope.mergeDateTime($scope.selectedWatch.date, $scope.selectedWatch.fromTime);
@@ -39,7 +33,7 @@ app.controller('wfController', function wfController($scope, $http) {
 
 			var day = new Date(date).getDate();
 			var mon = new Date(date).getMonth()+1;
-			var year = new Date(date).getYear();
+			var year = new Date(date).getFullYear();
 			var hr = new Date(time).getHours();
 			var min = new Date(time).getMinutes();
 

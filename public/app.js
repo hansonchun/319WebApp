@@ -1,5 +1,4 @@
-
-var app = angular.module('WebApp', ["ngRoute", "ui.bootstrap"]);
+var app = angular.module('WebApp', ["ngRoute", "ui.bootstrap", "DataService"]);
 
 app.config(function($routeProvider) {
 	$routeProvider
